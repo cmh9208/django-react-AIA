@@ -1,0 +1,32 @@
+version:  '3'
+
+services:
+  database:
+    image: mysql
+    container_name: cwh920625
+    volumes:
+      - ~/docker/mysql/etc/mysql/conf.d:/etc/mysql/cong.d:ro
+      - ~/docker/mysql/var/lib/mysql:/var/lib/musql
+      - ~/docker/mysql/var/log/mysql:/var/log/mysql
+    environment:
+      - MYSQL_DATABASE=mydb
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_ROOT_HOST=%
+    command: [ '--character-set-server=utf8mb4', '--collation-server=utf8mb4_unicode_ci' ]
+    ports:
+      - 3306:3306
+
+  web:
+    image: cwh920625dj:v1
+    build: .
+    container_name: cwh920625dj
+    command:
+      -python manage.py runserver 0:8000
+    ports:
+      - "8000:8000"
+    volumes:
+      - .:/cwh920625dj
+    expose:
+      - "8000"
+
+
