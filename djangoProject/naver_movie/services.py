@@ -14,8 +14,8 @@ class ScrapService(ScrapVO):
 
     def __init__(self):
         global driverpath, naver_url, savepath, encoding
-        driverpath = r"C:\Users\AIA\PycharmProjects\djangoProject\webcrawler\chromedriver.exe"
-        savepath = r"C:\Users\AIA\PycharmProjects\djangoProject\naver_movie\naver_movie.csv"
+        driverpath = r"C:\Users\AIA\PycharmProjects\django-react-AIA\djangoProject\webcrawler\chromedriver.exe"
+        savepath = r"C:\Users\AIA\PycharmProjects\django-react-AIA\djangoProject\naver_movie\naver_movie.csv"
         # 파일명 없으면 Permission Error 발생
         naver_url = "https://movie.naver.com/movie/sdb/rank/rmovie.naver"
         encoding = "UTF-8"

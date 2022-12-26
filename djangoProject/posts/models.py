@@ -14,7 +14,7 @@ class Post(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 
     class Meta:
-        db_table = "blog_posts"
+        db_table = "posts"
     def __str__(self):
         return f'{self.pk} {self.title} {self.content} {self.create_at}' \
                f' {self.updated_at}'

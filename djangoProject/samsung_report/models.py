@@ -132,16 +132,16 @@ class Controller:
 
     def data_analysis(self):
         self.download_dictionary()
-        self.entity.fname = r'C:\Users\AIA\PycharmProjects\djangoProject\samsung_report\data\kr-Report_2018.txt'
+        self.entity.fname = r'C:\Users\AIA\PycharmProjects\django-react-AIA\djangoProject\samsung_report\data\kr-Report_2018.txt'
         self.service.extract_tokens(self.entity)
         self.service.extract_hangeul()
         self.service.conversion_token()
         self.service.compound_noun()
-        self.entity.fname = r'C:\Users\AIA\PycharmProjects\djangoProject\samsung_report\data\stopwords.txt'
+        self.entity.fname = r'C:\Users\AIA\PycharmProjects\django-react-AIA\djangoProject\samsung_report\data\stopwords.txt'
         self.service.extract_stopword(self.entity)
         self.service.filtering_text_with_stopword()
         self.service.frequent_text()
-        self.entity.fname = r'C:\Users\AIA\PycharmProjects\djangoProject\samsung_report\data\D2Coding.ttf'
+        self.entity.fname = r'C:\Users\AIA\PycharmProjects\django-react-AIA\djangoProject\samsung_report\data\D2Coding.ttf'
         # self.service.draw_wordcloud(self.entity)
         return self.service.frequent_text()
 

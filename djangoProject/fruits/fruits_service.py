@@ -2,7 +2,7 @@ import numpy as np
 import pandas as pd
 import tensorflow as tf
 from keras import Sequential
-from keras.applications.densenet import layers
+# from keras.applications.densenet import layers
 from keras.layers import Dense
 from keras.saving.save import load_model
 from matplotlib import pyplot as plt
@@ -32,20 +32,20 @@ class FruitsService(object):
             Test_Apple_Braeburn, Test_Apple_Crimson_Snow, Test_Apple_Golden1, Test_Apple_Golden2, Test_Apple_Golden3, train_data_dir, test_data_dir
 
 
-        Train_Apple_Braeburn = r"C:\Users\AIA\PycharmProjects\djangoProject\fruits\train\Apple Braeburn"
-        Train_Apple_Crimson_Snow = r"C:\Users\AIA\PycharmProjects\djangoProject\fruits\train\Apple Crimson Snow"
-        Train_Apple_Golden1 = r"C:\Users\AIA\PycharmProjects\djangoProject\fruits\train\Apple Golden 1"
-        Train_Apple_Golden2 = r"C:\Users\AIA\PycharmProjects\djangoProject\fruits\train\Apple Golden 2"
-        Train_Apple_Golden3 = r"C:\Users\AIA\PycharmProjects\djangoProject\fruits\train\Apple Golden 3"
+        Train_Apple_Braeburn = r"C:\Users\AIA\PycharmProjects\django-react-AIA\djangoProject\fruits\train\Apple Braeburn"
+        Train_Apple_Crimson_Snow = r"C:\Users\AIA\PycharmProjects\django-react-AIA\djangoProject\fruits\train\Apple Crimson Snow"
+        Train_Apple_Golden1 = r"C:\Users\AIA\PycharmProjects\django-react-AIA\djangoProject\fruits\train\Apple Golden 1"
+        Train_Apple_Golden2 = r"C:\Users\AIA\PycharmProjects\django-react-AIA\djangoProject\fruits\train\Apple Golden 2"
+        Train_Apple_Golden3 = r"C:\Users\AIA\PycharmProjects\django-react-AIA\djangoProject\fruits\train\Apple Golden 3"
 
-        Test_Apple_Braeburn = r"C:\Users\AIA\PycharmProjects\djangoProject\fruits\test\Apple Braeburn"
-        Test_Apple_Crimson_Snow = r"C:\Users\AIA\PycharmProjects\djangoProject\fruits\test\Apple Crimson Snow"
-        Test_Apple_Golden1 = r"C:\Users\AIA\PycharmProjects\djangoProject\fruits\test\Apple Golden 1"
-        Test_Apple_Golden2 = r"C:\Users\AIA\PycharmProjects\djangoProject\fruits\test\Apple Golden 2"
-        Test_Apple_Golden3 = r"C:\Users\AIA\PycharmProjects\djangoProject\fruits\test\Apple Golden 3"
+        Test_Apple_Braeburn = r"C:\Users\AIA\PycharmProjects\django-react-AIA\djangoProject\fruits\test\Apple Braeburn"
+        Test_Apple_Crimson_Snow = r"C:\Users\AIA\PycharmProjects\django-react-AIA\djangoProject\fruits\test\Apple Crimson Snow"
+        Test_Apple_Golden1 = r"C:\Users\AIA\PycharmProjects\django-react-AIA\djangoProject\fruits\test\Apple Golden 1"
+        Test_Apple_Golden2 = r"C:\Users\AIA\PycharmProjects\django-react-AIA\djangoProject\fruits\test\Apple Golden 2"
+        Test_Apple_Golden3 = r"C:\Users\AIA\PycharmProjects\django-react-AIA\djangoProject\fruits\test\Apple Golden 3"
 
-        train_data_dir = r'C:\Users\AIA\PycharmProjects\djangoProject\fruits\train'
-        test_data_dir = r'C:\Users\AIA\PycharmProjects\djangoProject\fruits\test'
+        train_data_dir = r'C:\Users\AIA\PycharmProjects\django-react-AIA\djangoProject\fruits\train'
+        test_data_dir = r'C:\Users\AIA\PycharmProjects\django-react-AIA\djangoProject\fruits\test'
 
 
 
@@ -121,19 +121,19 @@ class FruitsService(object):
         x = np.concatenate([x for x, y in test_ds1], axis=0)
         print(x[0])
 
-        # test_ds1의 첫번째 이미지와 레이블을 불러와 그림으로 확인
-        plt.figure(figsize=(3, 3))
-        plt.imshow(x[0].astype("uint8"))
-        plt.title(class_names[y[0]])
-        plt.axis("off")
-        plt.show()
-
-        # test_ds1의 마지막 이미지와 레이블을 불러와 그림으로 확인
-        plt.figure(figsize=(3, 3))
-        plt.imshow(x[-1].astype("uint8"))
-        plt.title(class_names[y[-1]])
-        plt.axis("off")
-        plt.show()
+        # # test_ds1의 첫번째 이미지와 레이블을 불러와 그림으로 확인
+        # plt.figure(figsize=(3, 3))
+        # plt.imshow(x[0].astype("uint8"))
+        # plt.title(class_names[y[0]])
+        # plt.axis("off")
+        # plt.show()
+        #
+        # # test_ds1의 마지막 이미지와 레이블을 불러와 그림으로 확인
+        # plt.figure(figsize=(3, 3))
+        # plt.imshow(x[-1].astype("uint8"))
+        # plt.title(class_names[y[-1]])
+        # plt.axis("off")
+        # plt.show()
 
         # test_ds1을 제외하고 위에서 불러온 세가지 데이터셋을 Prefetch 데이터셋으로 설정
         BUFFER_SIZE = 10000
@@ -148,6 +148,8 @@ class FruitsService(object):
         # 합성곱 신경망(CNN) 모델 구성
         num_classes = 5  # 레이블 값의 개수, 즉 사과 품종의 개수
 
+
+
         model = keras.Sequential([
             keras.layers.experimental.preprocessing.Rescaling(1. / 255, input_shape=(img_height, img_width, 3)),
             keras.layers.Conv2D(16, 3, padding='same', activation='relu'),
@@ -161,20 +163,6 @@ class FruitsService(object):
             keras.layers.Dropout(.50),
             keras.layers.Dense(num_classes, activation='softmax')
         ])
-
-        # model = keras.Sequential([
-        #     layers.experimental.preprocessing.Rescaling(1. / 255, input_shape=(img_height, img_width, 3)),
-        #     layers.Conv2D(16, 3, padding='same', activation='relu'),
-        #     layers.MaxPooling2D(2),
-        #     layers.Dropout(.50),
-        #     layers.Conv2D(32, 3, padding='same', activation='relu'),
-        #     layers.MaxPooling2D(2),
-        #     layers.Dropout(.50),
-        #     layers.Flatten(),
-        #     layers.Dense(500, activation='relu'),
-        #     layers.Dropout(.50),
-        #     layers.Dense(num_classes, activation='softmax')
-        # ])
 
         # 모델을 컴파일
         model.compile(

@@ -9,7 +9,7 @@ from sklearn.preprocessing import OneHotEncoder
 class IrisService(object):
     def __init__(self):
         global model, graph, target_names
-        model = load_model('./save/iris_model.h5')
+        model = load_model(r'C:\Users\AIA\PycharmProjects\django-react-AIA\djangoProject\shop\ir\save\iris_model.h5')
         target_names = datasets.load_iris().target_names
 
 
