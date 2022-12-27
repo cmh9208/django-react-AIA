@@ -19,10 +19,12 @@ class FashionService(object):
 
     # self, i, predictions_array, true_label, img
     def service_model(self, i) -> '':
-        model = load_model(r"C:\Users\AIA\PycharmProjects\django-react-AIA\djangoProject\fashion\save\fashion_model.h5")
+
+        model = load_model(r"C:\Users\최민호\PycharmProjects\django-react-AIA\djangoProject\fashion\save\fashion_model.h5")
         (train_images, train_labels), (test_images, test_labels) = keras.datasets.fashion_mnist.load_data()
         predictions = model.predict(test_images)
-        predictions_array, true_label, img = predictions[i], test_labels[i], test_images[i]
+        predictions_array= predictions[i]
+        # predictions_array, true_label, img = predictions[i], test_labels[i], test_images[i]
         '''
         plt.grid(False)
         plt.xticks([])

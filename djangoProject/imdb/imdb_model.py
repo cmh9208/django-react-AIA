@@ -4,6 +4,7 @@ import os
 import pandas as pd
 import tensorflow as tf
 from keras import Sequential
+from keras.saving.save import load_model
 from tensorflow import keras
 from keras.layers import Dense
 
@@ -14,6 +15,8 @@ from keras_preprocessing.sequence import pad_sequences
 from sklearn import datasets
 from sklearn.preprocessing import OneHotEncoder
 from sklearn.model_selection import train_test_split
+
+
 
 class ImdbModel(object):
     def __init__(self):
@@ -51,19 +54,7 @@ class ImdbModel(object):
         val_seq = pad_sequences(val_input, maxlen=100)
 
         ##########################################################################
-        model = keras.Sequential()
-        model.add(keras.layers.SimpleRNN(8, input_shape=(100, 500)))
-        model.add(keras.layers.Dense(1, activation='sigmoid'))
 
-        train_oh = keras.utils.to_categorical(train_seq)
-        print(train_oh.shape)
-        print(train_oh[0][0][:12])
-        print(np.sum(train_oh[0][0]))
-
-        val_oh = keras.utils.to_categorical(val_seq)
-        print(val_oh.shape)
-
-        model.summary()
 
         # 순환 신경망 만들기
         model = keras.Sequential()
