@@ -38,7 +38,7 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    "blog.buser","blog.comments","blog.posts","blog.tags",
+    "blog.buser","blog.comments","blog.posts","blog.tags","blog.views",
     "movie.cinemas","movie.movies","movie.muser","movie.showtimes","movie.theaters","movie.theater_tickets",
     "shop.carts","shop.categories","shop.deliveries","shop.orders","shop.products","shop.suser",
     "fashion",
@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     "naver_movie",
     "samsung_report",
     "users",
+    "imdb",
     "rest_framework"
 ]
 CORS_ORIGIN_WHITELIST = ['http://127.0.0.1:8000', 'http://localhost:3000']

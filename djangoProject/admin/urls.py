@@ -32,6 +32,7 @@ urlpatterns = [
     path("samsung_report/", include('samsung_report.urls')),
     path("naver_movie/", include('naver_movie.urls')),
     path("users/", include('users.urls')),
+    path("imdb/", include('imdb.urls')),
 
 
 

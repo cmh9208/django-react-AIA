@@ -20,41 +20,7 @@ class ScrapService(ScrapVO):
         naver_url = "https://movie.naver.com/movie/sdb/rank/rmovie.naver"
         encoding = "UTF-8"
 
-    def bugs_music(self, arg): # BeautifulSoup 기본크롤링
-        soup = BeautifulSoup(urlopen(arg.domain + arg.query_string), 'lxml')
-        title = {"class": arg.class_names[0]}
-        artist = {"class": arg.class_names[1]}
-        titles = soup.find_all(name=arg.tag_name, attrs=title)
-        titles = [i.find('a').text for i in titles]
-        artists = soup.find_all(name=arg.tag_name, attrs=artist)
-        artists = [i.find('a').text for i in artists]
-        [print(f"{i}위 {j} : {k}")  # 디버깅
-         for i, j, k in zip(range(1, len(titles)), titles, artists)]
-        diction = {}  # dict 로 변환
-        for i, j in enumerate(titles):
-            diction[j] = artists[i]
-        arg.diction = diction
-        arg.dict_to_dataframe()
-        arg.dataframe_to_csv()  # csv파일로 저장
 
-    def melon_music(self, arg): # BeautifulSoup 기본크롤링
-        soup = BeautifulSoup(
-            urlopen(urllib.request.Request(arg.domain + arg.query_string, headers={'User-Agent': "Mozilla/5.0"})),
-            "lxml")
-        title = {"class": arg.class_names[0]}
-        artist = {"class": arg.class_names[1]}
-        titles = soup.find_all(name=arg.tag_name, attrs=title)
-        titles = [i.find('a').text for i in titles]
-        artists = soup.find_all(name=arg.tag_name, attrs=artist)
-        artists = [i.find('a').text for i in artists]
-        [print(f"{i}위 {j} : {k}")  # 디버깅
-         for i, j, k in zip(range(1, len(titles)), titles, artists)]
-        diction = {}  # dict 로 변환
-        for i, j in enumerate(titles):
-            diction[j] = artists[i]
-        arg.diction = diction
-        arg.dict_to_dataframe()
-        arg.dataframe_to_csv()  # csv파일로 저장
 
     def naver_movie_review(self):
         if os.path.isfile(savepath) == False:
@@ -72,6 +38,55 @@ class ScrapService(ScrapVO):
             # 프론트요구사항: 순위 rank, 제목 title 로 변경해서 리턴할 것
             result = [{'rank': f"{i+1}", 'title': f"{j}"} for i, j in enumerate(df)]
             return result
+
+
+
+
+
+
+    #
+    # def bugs_music(self, arg): # BeautifulSoup 기본크롤링
+    #     soup = BeautifulSoup(urlopen(arg.domain + arg.query_string), 'lxml')
+    #     title = {"class": arg.class_names[0]}
+    #     artist = {"class": arg.class_names[1]}
+    #     titles = soup.find_all(name=arg.tag_name, attrs=title)
+    #     titles = [i.find('a').text for i in titles]
+    #     artists = soup.find_all(name=arg.tag_name, attrs=artist)
+    #     artists = [i.find('a').text for i in artists]
+    #     [print(f"{i}위 {j} : {k}")  # 디버깅
+    #      for i, j, k in zip(range(1, len(titles)), titles, artists)]
+    #     diction = {}  # dict 로 변환
+    #     for i, j in enumerate(titles):
+    #         diction[j] = artists[i]
+    #     arg.diction = diction
+    #     arg.dict_to_dataframe()
+    #     arg.dataframe_to_csv()  # csv파일로 저장
+    #
+    # def melon_music(self, arg): # BeautifulSoup 기본크롤링
+    #     soup = BeautifulSoup(
+    #         urlopen(urllib.request.Request(arg.domain + arg.query_string, headers={'User-Agent': "Mozilla/5.0"})),
+    #         "lxml")
+    #     title = {"class": arg.class_names[0]}
+    #     artist = {"class": arg.class_names[1]}
+    #     titles = soup.find_all(name=arg.tag_name, attrs=title)
+    #     titles = [i.find('a').text for i in titles]
+    #     artists = soup.find_all(name=arg.tag_name, attrs=artist)
+    #     artists = [i.find('a').text for i in artists]
+    #     [print(f"{i}위 {j} : {k}")  # 디버깅
+    #      for i, j, k in zip(range(1, len(titles)), titles, artists)]
+    #     diction = {}  # dict 로 변환
+    #     for i, j in enumerate(titles):
+    #         diction[j] = artists[i]
+    #     arg.diction = diction
+    #     arg.dict_to_dataframe()
+    #     arg.dataframe_to_csv()  # csv파일로 저장
+    #
+    #
+    #
+
+
+
+
 
 music_menus = ["Exit", #0
                 "BugsMusic",#1
